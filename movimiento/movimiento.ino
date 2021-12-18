@@ -34,6 +34,7 @@ void setup() {
   pinMode(US_Trigger, OUTPUT);
   pinMode(US_Echo, INPUT);
   digitalWrite(US_Trigger, LOW);
+  pinMode(LED_BUILTIN, OUTPUT);
 
 }
 
@@ -55,7 +56,7 @@ void loop() {
   dist = time_eco/59;
 
   int free_path = 0;
-  if(dist < 11)
+  if(dist < 30)
   {
     free_path = 1;
   }
@@ -105,10 +106,7 @@ void loop() {
       // SI HAY OBSTACULO ATACAMOS
       if(free_path == US_DETECTED) // HAY OBSTACULO
       {
-        Serial.print("Distancia: ");
-        Serial.print(dist);
-        Serial.print("cm");
-        Serial.println();
+
         myservoD.write(180);
         myservoI.write(0);
       }
